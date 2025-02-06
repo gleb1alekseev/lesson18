@@ -27,5 +27,4 @@ public class MainPage {
     //*[@data-test='password' and contains(@id, 'password')]
     //*[@data-test='password' and contains(@id, 'password') and contains(@name, 'password')]
     //img[@class="inventory_item_img"]/@src
-
 }
