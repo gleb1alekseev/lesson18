@@ -11,9 +11,11 @@ import org.testng.annotations.Test;
 public class LoginTest {
 
     @Test
+    public void loginTest() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.saucedemo.com/");
+        Actions action = new Actions(driver);
 
         WebElement usernameElement = driver.findElement(By.id("user-name"));
         usernameElement.sendKeys("standard_user");
@@ -28,6 +30,7 @@ public class LoginTest {
         card.click();
 
         WebElement productName = driver.findElement(By.xpath("//div[text()='Sauce Labs Backpack']"));
+        Assert.assertEquals(productName.getText(), "Sauce Labs Backpack");
         WebElement productPrice = driver.findElement(By.cssSelector("div[data-test='inventory-item-price']"));
         Assert.assertEquals(productPrice.getText(), "$29.99");
     }
