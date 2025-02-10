@@ -1,9 +1,9 @@
 package pages;
 
-import constants.IConstants;
+import constants.IPageConstants;
 import org.openqa.selenium.WebDriver;
 
-public abstract class BasePage implements IConstants {
+public abstract class BasePage implements IPageConstants {
     WebDriver driver;
 
     BasePage(WebDriver driver){
@@ -12,7 +12,6 @@ public abstract class BasePage implements IConstants {
 
     public void openPage(String url){
         driver.get(url);
+//        return null;
     }
-
-
 }
