@@ -1,8 +1,6 @@
 package tests;
 
 import constants.IPageConstants;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -14,7 +12,7 @@ public class HeaderTest extends BaseTest {
         loginPage.login(USERNAME, PASSWORD);
         productPage.openPage(IPageConstants.PRODUCTS_PAGE_URL);
         headerPage.selectDropdownMenu();
-        headerPage.logOutButton();
+        headerPage.logOut();
         Assert.assertEquals(driver.getCurrentUrl(), LOGIN_PAGE_URL + "/");
     }
 }

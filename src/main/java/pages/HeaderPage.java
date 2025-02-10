@@ -15,7 +15,7 @@ public class HeaderPage extends BasePage{
     public void selectDropdownMenu(){
         driver.findElement(DROPDOWN_MENU).click();
     }
-    public void logOutButton(){
+    public void logOut(){
         driver.findElement(LOG_OUT_BUTTON).click();
     }
 }
