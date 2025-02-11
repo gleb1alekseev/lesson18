@@ -1,11 +1,10 @@
 package tests;
 
 import constants.IPageConstants;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.ProductPage;
+import org.testng.asserts.SoftAssert;
+import java.util.List;
 
 public class ProductTests extends BaseTest{
     //loginPage.openPage()
@@ -21,7 +20,7 @@ public class ProductTests extends BaseTest{
         loginPage.openPage(IPageConstants.LOGIN_PAGE_URL);
         loginPage.login(USERNAME, PASSWORD);
         productPage.openPage(IPageConstants.PRODUCTS_PAGE_URL);
-        Assert.assertEquals(SAUCE_LABS_BACKPACK, productPage.getProductText(ProductPage.PRODUCT1));
+        Assert.assertEquals(SAUCE_LABS_BACKPACK, productPage.getProductText(SAUCE_LABS_BACKPACK));
     }
 
     @Test(description = "QA-7 Test to check that all products are shown on the PRODUCTS_PAGE_URL page")
@@ -29,12 +28,26 @@ public class ProductTests extends BaseTest{
         loginPage.openPage(IPageConstants.LOGIN_PAGE_URL);
         loginPage.login(USERNAME, PASSWORD);
         productPage.openPage(IPageConstants.PRODUCTS_PAGE_URL);
-        Assert.assertEquals(SAUCE_LABS_BACKPACK, productPage.getProductText(ProductPage.PRODUCT1));
-        Assert.assertEquals(SAUCE_LABS_BIKE_LIGHT, productPage.getProductText(ProductPage.PRODUCT2));
-        Assert.assertEquals(SAUCE_LABS_BOLT_T_SHIRT, productPage.getProductText(ProductPage.PRODUCT3));
-        Assert.assertEquals(SAUCE_LABS_FLEECE_JACKET, productPage.getProductText(ProductPage.PRODUCT4));
-        Assert.assertEquals(SAUCE_LABS_ONESIE, productPage.getProductText(ProductPage.PRODUCT5));
-        Assert.assertEquals(TEST_ALL_THE_THINGS_T_SHIRT_RED, productPage.getProductText(ProductPage.PRODUCT6));
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(productPage.getProductText(ITestConstants.SAUCE_LABS_BACKPACK), ITestConstants.SAUCE_LABS_BACKPACK);
+        softAssert.assertEquals(productPage.getProductText(ITestConstants.SAUCE_LABS_BIKE_LIGHT), ITestConstants.SAUCE_LABS_BIKE_LIGHT);
+        softAssert.assertEquals(productPage.getProductText(ITestConstants.SAUCE_LABS_BOLT_T_SHIRT), ITestConstants.SAUCE_LABS_BOLT_T_SHIRT);
+        softAssert.assertEquals(productPage.getProductText(ITestConstants.SAUCE_LABS_FLEECE_JACKET), ITestConstants.SAUCE_LABS_FLEECE_JACKET);
+        softAssert.assertEquals(productPage.getProductText(ITestConstants.SAUCE_LABS_ONESIE), ITestConstants.SAUCE_LABS_ONESIE);
+        softAssert.assertEquals(productPage.getProductText(ITestConstants.TEST_ALL_THE_THINGS_T_SHIRT_RED), ITestConstants.TEST_ALL_THE_THINGS_T_SHIRT_RED);
+        softAssert.assertAll();
+//        String[] products = {
+//                ITestConstants.SAUCE_LABS_BACKPACK,
+//                ITestConstants.SAUCE_LABS_BIKE_LIGHT,
+//                ITestConstants.SAUCE_LABS_BOLT_T_SHIRT,
+//                ITestConstants.SAUCE_LABS_FLEECE_JACKET,
+//                ITestConstants.SAUCE_LABS_ONESIE,
+//                ITestConstants.TEST_ALL_THE_THINGS_T_SHIRT_RED
+//        };
+//        for (String product : products) {
+//            softAssert.assertEquals(productPage.getProductText(product), product);
+//        }
+//        softAssert.assertAll();
     }
 
     @Test(description = "QA-8 Test to check the SAUCE_LABS_BACKPACK product is added to cart")
@@ -42,9 +55,9 @@ public class ProductTests extends BaseTest{
         loginPage.openPage(IPageConstants.LOGIN_PAGE_URL);
         loginPage.login(USERNAME, PASSWORD);
         productPage.openPage(IPageConstants.PRODUCTS_PAGE_URL);
-        productPage.getProductText(ProductPage.PRODUCT1);
-        productPage.addToCart(ProductPage.ADD_TO_CART_1);
+        productPage.getProductText(SAUCE_LABS_BACKPACK);
+        productPage.addProductToCart(SAUCE_LABS_BACKPACK);
         cartPage.openPage(IPageConstants.CART_PAGE_URL);
-        Assert.assertEquals(SAUCE_LABS_BACKPACK, productPage.getProductText(ProductPage.PRODUCT1));
+        Assert.assertEquals(SAUCE_LABS_BACKPACK, productPage.getProductText(SAUCE_LABS_BACKPACK));
     }
 }
