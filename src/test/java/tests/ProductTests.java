@@ -4,9 +4,8 @@ import constants.IPageConstants;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import java.util.List;
 
-public class ProductTests extends BaseTest{
+public class ProductTests extends BaseTest {
     //loginPage.openPage()
     //loginPage.login(username, password)
     //productPage.addToCart("Product Name")
@@ -16,7 +15,7 @@ public class ProductTests extends BaseTest{
     //Assertions
 
     @Test(description = "QA-6 Test to check the SAUCE_LABS_BACKPACK product is shown on the PRODUCTS_PAGE_URL page")
-    public void findBackpackProduct(){
+    public void findBackpackProduct() {
         loginPage.openPage(IPageConstants.LOGIN_PAGE_URL);
         loginPage.login(USERNAME, PASSWORD);
         productPage.openPage(IPageConstants.PRODUCTS_PAGE_URL);
@@ -24,7 +23,7 @@ public class ProductTests extends BaseTest{
     }
 
     @Test(description = "QA-7 Test to check that all products are shown on the PRODUCTS_PAGE_URL page")
-    public void findAllProductsOnPage(){
+    public void findAllProductsOnPage() {
         loginPage.openPage(IPageConstants.LOGIN_PAGE_URL);
         loginPage.login(USERNAME, PASSWORD);
         productPage.openPage(IPageConstants.PRODUCTS_PAGE_URL);
@@ -36,22 +35,10 @@ public class ProductTests extends BaseTest{
         softAssert.assertEquals(productPage.getProductText(ITestConstants.SAUCE_LABS_ONESIE), ITestConstants.SAUCE_LABS_ONESIE);
         softAssert.assertEquals(productPage.getProductText(ITestConstants.TEST_ALL_THE_THINGS_T_SHIRT_RED), ITestConstants.TEST_ALL_THE_THINGS_T_SHIRT_RED);
         softAssert.assertAll();
-//        String[] products = {
-//                ITestConstants.SAUCE_LABS_BACKPACK,
-//                ITestConstants.SAUCE_LABS_BIKE_LIGHT,
-//                ITestConstants.SAUCE_LABS_BOLT_T_SHIRT,
-//                ITestConstants.SAUCE_LABS_FLEECE_JACKET,
-//                ITestConstants.SAUCE_LABS_ONESIE,
-//                ITestConstants.TEST_ALL_THE_THINGS_T_SHIRT_RED
-//        };
-//        for (String product : products) {
-//            softAssert.assertEquals(productPage.getProductText(product), product);
-//        }
-//        softAssert.assertAll();
     }
 
     @Test(description = "QA-8 Test to check the SAUCE_LABS_BACKPACK product is added to cart")
-    public void checkAddedProductInCart(){
+    public void checkAddedProductInCart() {
         loginPage.openPage(IPageConstants.LOGIN_PAGE_URL);
         loginPage.login(USERNAME, PASSWORD);
         productPage.openPage(IPageConstants.PRODUCTS_PAGE_URL);
