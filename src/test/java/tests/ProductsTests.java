@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class ProductTests extends BaseTest {
+public class ProductsTests extends BaseTest {
     //loginPage.openPage()
     //loginPage.login(username, password)
     //productPage.addToCart("Product Name")
@@ -47,4 +47,20 @@ public class ProductTests extends BaseTest {
         cartPage.openPage(IPageConstants.CART_PAGE_URL);
         Assert.assertEquals(SAUCE_LABS_BACKPACK, productPage.getProductText(SAUCE_LABS_BACKPACK));
     }
+
+    @Test
+    public void isAddToCartButtonDisplayedTest() {
+        loginPage.openPage(LOGIN_PAGE_URL);
+        loginPage.login(USERNAME, PASSWORD);
+        Assert.assertTrue(productPage.isAddToCartButtonDisplayed(SAUCE_LABS_BOLT_T_SHIRT));
+    }
+
+    @Test
+    public void isRemoveButtonDisplayedTest() {
+        loginPage.openPage(LOGIN_PAGE_URL);
+        loginPage.login(USERNAME, PASSWORD);
+        productPage.addProductToCart(SAUCE_LABS_BOLT_T_SHIRT);
+        Assert.assertTrue(productPage.isRemoveButtonDisplayed(SAUCE_LABS_BOLT_T_SHIRT));
+    }
 }
+
