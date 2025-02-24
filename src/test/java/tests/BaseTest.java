@@ -1,27 +1,31 @@
 package tests;
 
-import constants.IPageConstants;
+import constants.IConstants;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import listeners.TestListener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import pages.CartPage;
-import pages.HeaderPage;
-import pages.LoginPage;
-import pages.ProductPage;
+import org.testng.annotations.Listeners;
+import pages.*;
 
 import java.util.concurrent.TimeUnit;
 
-public class BaseTest implements IPageConstants, ITestConstants {
+@Listeners(TestListener.class)
+public class BaseTest implements IConstants, ITestConstants {
     WebDriver driver;
     LoginPage loginPage;
-    ProductPage productPage;
+    ProductsPage productsPage;
     CartPage cartPage;
     HeaderPage headerPage;
+    LoginPageFactory loginPageFactory;
 
+    /**
+     * This is initialization of pages
+     */
     @BeforeMethod
-    public void initTest(){
+    public void initTest() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -29,17 +33,16 @@ public class BaseTest implements IPageConstants, ITestConstants {
         initPages();
     }
 
-    public void initPages(){
+    public void initPages() {
         loginPage = new LoginPage(driver);
-        productPage = new ProductPage(driver);
+        productsPage = new ProductsPage(driver);
         cartPage = new CartPage(driver);
         headerPage = new HeaderPage(driver);
+        loginPageFactory = new LoginPageFactory(driver);
     }
 
     @AfterMethod
-    public void endTest(){
+    public void endTest() {
         driver.quit();
     }
 }
-
-

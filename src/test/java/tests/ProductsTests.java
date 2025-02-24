@@ -1,11 +1,10 @@
 package tests;
 
-import constants.IPageConstants;
+import constants.IConstants;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
-public class ProductsTests extends BaseTest {
+public class ProductsTests extends Preconditions {
     //loginPage.openPage()
     //loginPage.login(username, password)
     //productPage.addToCart("Product Name")
@@ -16,9 +15,9 @@ public class ProductsTests extends BaseTest {
 
     @Test(description = "QA-6 Test to check the SAUCE_LABS_BACKPACK product is shown on the PRODUCTS_PAGE_URL page")
     public void findBackpackProduct() {
-        loginPage.openPage(IPageConstants.LOGIN_PAGE_URL);
+        loginPage.openPage(IConstants.LOGIN_PAGE_URL);
         loginPage.login(USERNAME, PASSWORD);
-        productPage.openPage(IPageConstants.PRODUCTS_PAGE_URL);
+        productsPage.openPage(IConstants.PRODUCTS_PAGE_URL);
         String expectedResult = "Sauce Labs Bike Light";
         Assert.assertEquals(SAUCE_LABS_BIKE_LIGHT, expectedResult);
     }
@@ -40,12 +39,12 @@ public class ProductsTests extends BaseTest {
 
     @Test(description = "QA-8 Test to check the SAUCE_LABS_BACKPACK product is added to cart")
     public void checkAddedProductInCart() {
-        loginPage.openPage(IPageConstants.LOGIN_PAGE_URL);
+        loginPage.openPage(IConstants.LOGIN_PAGE_URL);
         loginPage.login(USERNAME, PASSWORD);
-        productPage.openPage(IPageConstants.PRODUCTS_PAGE_URL);
-        productPage.getProductText(SAUCE_LABS_BACKPACK);
-        productPage.addProductToCart(SAUCE_LABS_BACKPACK);
-        cartPage.openPage(IPageConstants.CART_PAGE_URL);
+        productsPage.openPage(IConstants.PRODUCTS_PAGE_URL);
+        productsPage.getProductText(SAUCE_LABS_BACKPACK);
+        productsPage.addProductToCart(SAUCE_LABS_BACKPACK);
+        cartPage.openPage(IConstants.CART_PAGE_URL);
         String expectedResult = "Sauce Labs Backpack";
         Assert.assertEquals(SAUCE_LABS_BACKPACK, expectedResult);
     }
@@ -53,16 +52,16 @@ public class ProductsTests extends BaseTest {
     @Test
     public void isAddToCartButtonDisplayedTest() {
         loginPage.openPage(LOGIN_PAGE_URL);
-        loginPage.login(USERNAME, PASSWORD);
-        Assert.assertTrue(productPage.isAddToCartButtonDisplayed(SAUCE_LABS_BOLT_T_SHIRT));
+        loginPage.login(userSuccess);
+        Assert.assertTrue(productsPage.isAddToCartButtonDisplayed(SAUCE_LABS_BOLT_T_SHIRT));
     }
 
     @Test
     public void isRemoveButtonDisplayedTest() {
         loginPage.openPage(LOGIN_PAGE_URL);
-        loginPage.login(USERNAME, PASSWORD);
-        productPage.addProductToCart(SAUCE_LABS_BOLT_T_SHIRT);
-        Assert.assertTrue(productPage.isRemoveButtonDisplayed(SAUCE_LABS_BOLT_T_SHIRT));
+        loginPage.login(userSuccess);
+        productsPage.addProductToCart(SAUCE_LABS_BOLT_T_SHIRT);
+        Assert.assertTrue(productsPage.isRemoveButtonDisplayed(SAUCE_LABS_BOLT_T_SHIRT));
     }
 }
 
