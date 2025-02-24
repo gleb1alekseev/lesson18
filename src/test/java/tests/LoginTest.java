@@ -44,12 +44,12 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(driver.getCurrentUrl(), PRODUCTS_PAGE_URL);
     }
 
-//    @Test(description = "QA-5 Test login on site with correct data in username and password fields")
-//    public void successLogin(){
-//        loginPage.openPage(IPageConstants.LOGIN_PAGE_URL);
-//        loginPage.login(
-//                System.getProperty("username"),
-//                System.getProperty("password"));
-//        Assert.assertEquals(driver.getCurrentUrl(), PRODUCTS_PAGE_URL);
-//    }
+    @Test(description = "QA-5 Test login on site with correct data in username and password fields")
+    public void successLogin(){
+        loginPage.openPage(IPageConstants.LOGIN_PAGE_URL);
+        loginPage.login(
+                System.getProperty("username"),
+                System.getProperty("password"));
+        Assert.assertEquals(driver.getCurrentUrl(), PRODUCTS_PAGE_URL);
+    }
 }
