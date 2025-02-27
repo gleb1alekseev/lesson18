@@ -4,7 +4,7 @@ import constants.IConstants;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class ProductsTests extends Preconditions {
+public class ProductsTest extends Preconditions {
     //loginPage.openPage()
     //loginPage.login(username, password)
     //productPage.addToCart("Product Name")
@@ -58,9 +58,7 @@ public class ProductsTests extends Preconditions {
 
     @Test
     public void isRemoveButtonDisplayedTest() {
-        loginPage.openPage(LOGIN_PAGE_URL);
-        loginPage.login(userSuccess);
-        productsPage.addProductToCart(SAUCE_LABS_BOLT_T_SHIRT);
+        productSteps.loginAndAddProductToCart(userSuccess, SAUCE_LABS_BOLT_T_SHIRT);
         Assert.assertTrue(productsPage.isRemoveButtonDisplayed(SAUCE_LABS_BOLT_T_SHIRT));
     }
 }

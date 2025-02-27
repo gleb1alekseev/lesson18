@@ -4,7 +4,7 @@ import constants.IConstants;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class LoginTest extends BaseTest {
+public class LoginTest extends Preconditions {
     public static final String EMPTY_FIELD_USERNAME_ERROR = "Epic sadface: Username is required";
     public static final String EMPTY_FIELD_PASSWORD_ERROR = "Epic sadface: Password is required";
     public static final String INCORRECT_DATA_IN_FIELDS = "Epic sadface: Username and password do not match any user in this service";
@@ -18,9 +18,8 @@ public class LoginTest extends BaseTest {
 
     @Test(description = "QA-2 Test login on site with empty password field")
     public void loginWithEmptyPasswordTest(){
-        loginPage.openPage(IConstants.LOGIN_PAGE_URL);
-        loginPage.login(USERNAME, "");
-        Assert.assertEquals(loginPage.getErrorMessageText(), EMPTY_FIELD_PASSWORD_ERROR);
+        loginSteps.loginAndWaitForPageOpened(userWithEmptyUsername);
+        Assert.assertEquals(loginPage.getErrorMessageText(), EMPTY_FIELD_USERNAME_ERROR);
     }
 
     @Test(description = "QA-3 Test login on site with empty username and password fields")
