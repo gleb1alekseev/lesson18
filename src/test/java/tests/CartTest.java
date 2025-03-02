@@ -18,11 +18,6 @@ public class CartTest extends Preconditions{
         };
     }
 
-    /**
-     *
-     * @param productName
-     * @param price
-     */
     @Test(dataProvider = "products")
     public void addProductToCartTest(String productName, String price){
         loginPage
