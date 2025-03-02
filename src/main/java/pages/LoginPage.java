@@ -1,6 +1,7 @@
 package pages;
 
 import entity.User;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -11,6 +12,7 @@ import java.time.Duration;
 /**
  * The type Login page.
  */
+@Log4j2
 public class LoginPage extends BasePage {
     /**
      * The constant USERNAME_INPUT.
@@ -60,6 +62,7 @@ public class LoginPage extends BasePage {
         driver.findElement(USERNAME_INPUT).sendKeys(user.getUsername());
         driver.findElement(PASSWORD_INPUT).sendKeys(user.getPassword());
         driver.findElement(LOGIN_BUTTON).click();
+        log.info(String.format("User Registered with data: username is %s", user.getUsername()));
         return new ProductsPage(driver);
     }
 

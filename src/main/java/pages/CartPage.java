@@ -1,5 +1,7 @@
 package pages;
 
+import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -12,6 +14,7 @@ import java.time.Duration;
 /**
  * The type Cart page.
  */
+@Log4j2
 public class CartPage extends HeaderPage{
     private static final String PRODUCT_ITEM = "//*[text()='%s']/ancestor::*[@class=\"cart_item\"]";
     private static final String PRODUCT_PRICE = PRODUCT_ITEM + "//*[@class=\"inventory_item_price\"]";
@@ -35,6 +38,7 @@ public class CartPage extends HeaderPage{
      * @return the cart page
      */
     public CartPage openCartPage(String url) {
+        log.info("Open Cart Page URL {}", url);
         driver.get(url);
         return this;
     }
@@ -46,7 +50,9 @@ public class CartPage extends HeaderPage{
      * @return the product price
      */
     public String getProductPrice(String productName) {
-        return driver.findElement(By.xpath(String.format(PRODUCT_PRICE, productName))).getText();
+        String productPrice = driver.findElement(By.xpath(String.format(PRODUCT_PRICE, productName))).getText();
+        log.info("Get price for product: {}. Price is: {}", productName, productPrice);
+        return productPrice;
     }
 
     /**
@@ -54,8 +60,10 @@ public class CartPage extends HeaderPage{
      *
      * @return the product quantity
      */
-    public Integer getProductQuantity() {
-        return driver.findElements(By.xpath(CART_ITEM_CONTAINER)).size();
+    public int getProductQuantity() {
+        int productQuantity = driver.findElements(By.xpath(CART_ITEM_CONTAINER)).size();
+        log.info("Get product quantity: {}", productQuantity);
+        return productQuantity;
     }
 
     /**
@@ -66,7 +74,8 @@ public class CartPage extends HeaderPage{
      */
     public CartPage removeProductFromCart(String productName) {
         driver.findElement(By.xpath(String.format(REMOVE_BUTTON, productName))).click();
-        return this;
+        log.info("Remove product '{}'");
+        return null;
     }
 
     /**
