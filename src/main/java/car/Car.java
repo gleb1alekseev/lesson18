@@ -3,7 +3,6 @@ package car;
 import lombok.*;
 import org.testng.Assert;
 
-import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
