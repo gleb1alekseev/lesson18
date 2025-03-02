@@ -1,9 +1,8 @@
 package tests;
 
-import constants.IConstants;
+import constant.IConstants;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.LoginPage;
 
 public class HeaderTest extends BaseTest {
 

@@ -1,6 +1,6 @@
 package tests;
 
-import constants.IConstants;
+import constant.IConstants;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import listeners.TestListener;
 import org.openqa.selenium.WebDriver;

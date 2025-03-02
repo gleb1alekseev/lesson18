@@ -35,10 +35,12 @@ public class LoginPage extends BasePage {
         driver.findElement(USERNAME_INPUT).sendKeys(username);
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
         driver.findElement(LOGIN_BUTTON).click();
+        log.info(String.format("User Registered with data: username is: " + username + " and some password"));
         return new ProductsPage(driver);
     }
 
     public String getErrorMessageText() {
+        log.info("Error message was found: ");
         return driver.findElement(ERROR_MESSAGE).getText();
     }
 

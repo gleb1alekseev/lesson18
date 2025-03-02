@@ -17,25 +17,25 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult iTestResult) {
-        log.info("======================================== STARTING TEST {} ========================================\n", iTestResult.getName());
+        log.info("======================================== STARTING TEST {} ========================================%n", iTestResult.getName());
     }
 
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
-        System.out.printf("======================================== FINISHED TEST %s Duration: %ss ========================================\n", iTestResult.getName(),
+        log.info("======================================== FINISHED TEST {} Duration: {} ========================================%n", iTestResult.getName(),
                 getExecutionTime(iTestResult));
     }
 
     @Override
     public void onTestFailure(ITestResult iTestResult) {
-        System.out.printf("======================================== FAILED TEST %s Duration: %ss ========================================\n", iTestResult.getName(),
+        log.info("======================================== FAILED TEST {} Duration: {} ========================================%n", iTestResult.getName(),
                 getExecutionTime(iTestResult));
         takeScreenshot(iTestResult);
     }
 
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
-        System.out.printf("======================================== SKIPPING TEST %s ========================================\n", iTestResult.getName());
+        log.info("======================================== SKIPPING TEST {} ========================================%n", iTestResult.getName());
         takeScreenshot(iTestResult);
     }
 

@@ -1,4 +1,4 @@
-package constants;
+package constant;
 
 public interface IConstants {
         String LOGIN_PAGE_URL = "https://www.saucedemo.com";
