@@ -1,6 +1,7 @@
 package pages;
 
 import lombok.Getter;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+@Log4j2
 @Getter
 public class LoginPageFactory extends BasePage {
 
@@ -42,9 +44,11 @@ public class LoginPageFactory extends BasePage {
         usernameInput.sendKeys(username);
         passwordInput.sendKeys(password);
         loginButton.click();
+        log.info(String.format("User Registered with data: username is: " + username + " and some password"));
     }
 
     public String getErrorMessageText() {
+        log.info("Error message was found: ");
         return errorMessage.getText();
     }
 

@@ -1,28 +1,24 @@
 package entity;
 
-//import lombok.AllArgsConstructor;
-//import lombok.Builder;
-//import lombok.Data;
-//import lombok.NoArgsConstructor;
-//
-//@Data
-//@Builder
+import lombok.Getter;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
 //@NoArgsConstructor
-//@AllArgsConstructor
+@AllArgsConstructor
+@Getter
 public class User {
     private String password;
     private String username;
 
-    public String getPassword() {
-        return password;
-    }
-
     public User() {
     }
 
-    public String getUsername() {
-        return username;
-    }
     public static Builder newBuilder() {
         return new User().new Builder();
     }
