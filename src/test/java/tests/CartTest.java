@@ -19,37 +19,22 @@ public class CartTest extends Preconditions{
 
     @Test(dataProvider = "products")
     public void addProductToCartTest(String productName, String price){
-        loginPage
-                .openPage(LOGIN_PAGE_URL);
-        loginPage
-                .waitForPageOpened()
-                .login(userSuccess)
-                .addProductToCart(productName);
-        cartPage.openPage(CART_PAGE_URL);
+        loginSteps.loginAndWaitForPageOpened(ITestConstants.USERNAME, ITestConstants.PASSWORD);
+        cartSteps.addProductToCartByName(productName, price);
         Assert.assertEquals(cartPage.getProductPrice(productName), price);
     }
 
     @Test(retryAnalyzer = Retry.class)
     public void checkQuantityTest() {
-        loginPage
-                .openPage(LOGIN_PAGE_URL);
-        loginPage
-                .login(userSuccess)
-                .addProductToCart(SAUCE_LABS_BOLT_T_SHIRT, SAUCE_LABS_BACKPACK);
-        cartPage.openPage(CART_PAGE_URL);
+        productSteps.loginAndAddProductToCart(userSuccess, SAUCE_LABS_BOLT_T_SHIRT);
+        cartSteps.checkQuantity();
         Assert.assertEquals(cartPage.getProductQuantity(), 2);
     }
 
     @Test
     public void removeItemFromCartTest() {
-        loginPage
-                .openPage(LOGIN_PAGE_URL);
-        loginPage
-                .login(userSuccess)
-                .addProductToCart(SAUCE_LABS_BACKPACK);
-        cartPage
-                .openCartPage(CART_PAGE_URL)
-                .removeProductFromCart(SAUCE_LABS_BACKPACK);
-        Assert.assertFalse(cartPage.isProductDisplayed(SAUCE_LABS_BACKPACK));
+        productSteps.loginAndAddProductToCart(userSuccess, SAUCE_LABS_BOLT_T_SHIRT);
+        cartSteps.removeItemFromCart(SAUCE_LABS_BOLT_T_SHIRT);
+        Assert.assertFalse(cartPage.isProductDisplayed(SAUCE_LABS_BOLT_T_SHIRT));
     }
 }
