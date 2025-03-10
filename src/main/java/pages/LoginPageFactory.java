@@ -48,7 +48,7 @@ public class LoginPageFactory extends BasePage {
     }
 
     public String getErrorMessageText() {
-        log.info("Error message was found: ");
+        log.info("Error message: ");
         return errorMessage.getText();
     }
 

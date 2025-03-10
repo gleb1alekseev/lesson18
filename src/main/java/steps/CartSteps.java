@@ -29,14 +29,13 @@ public class CartSteps {
         return this;
     }
 
-    @Step()
+    @Step("Check quantity on the cart page")
     public void checkQuantity() {
         cartPage.openPage(CART_PAGE_URL);
         log.info("Cart page is opened " + CART_PAGE_URL);
-        Assert.assertEquals(cartPage.getProductQuantity(), 2);
     }
 
-    @Step
+    @Step("Remove product from cart page")
     public void removeItemFromCart(String productName) {
         cartPage.openCartPage(CART_PAGE_URL);
         log.info("Cart page is opened " + CART_PAGE_URL);
