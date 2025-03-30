@@ -14,7 +14,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
-                git branch: 'main', url: 'https://github.com/gleb1alekseev/SauceDemo.git'
+                git branch: 'master', url: 'https://github.com/gleb1alekseev/SauceDemo.git'
 
                 // Run Maven on a Unix agent.
 //                 sh "mvn -Dtest=LoginTest test"
